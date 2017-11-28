@@ -53,8 +53,15 @@ function createCloud() {
   div.style.oTransform = t;
   world.appendChild( div );
 
-  for( var j = 0; j < 5 + Math.round( Math.random() * 30 ); j++ ) {
+  for( var j = 0; j < 5 + Math.round( Math.random() * 20 ); j++ ) {
     var cloud = document.createElement( 'img' );
+    cloud.style.opacity = 0;
+    var r = Math.random();
+    var src = '../images/cloud.png';
+    ( function( img ) { img.addEventListener( 'load', function() {
+      img.style.opacity = .7;
+    } ) } )( cloud );
+    cloud.setAttribute( 'src', src );
     cloud.className = 'cloudLayer';
 
     var x = 256 - ( Math.random() * 512 );
@@ -126,12 +133,10 @@ function generate() {
 }
 
 function updateView() {
-
   var t = 'translateZ( ' + d + 'px ) rotateX( ' + worldXAngle + 'deg) rotateY( ' + worldYAngle + 'deg)';
   world.style.webkitTransform = t;
   world.style.MozTransform = t;
   world.style.oTransform = t;
-
 }
 
 function update (){
@@ -139,7 +144,7 @@ function update (){
   for( var j = 0; j < layers.length; j++ ) {
     var layer = layers[ j ];
     layer.data.a += layer.data.speed;
-    var t = 'translateX( ' + layer.data.x + 'px ) translateY( ' + layer.data.y + 'px ) translateZ( ' + layer.data.z + 'px ) rotateY( ' + ( - worldYAngle ) + 'deg ) rotateX( ' + ( - worldXAngle ) + 'deg ) scale( ' + layer.data.s + ')';
+    var t = 'translateX( ' + layer.data.x + 'px ) translateY( ' + layer.data.y + 'px ) translateZ( ' + layer.data.z + 'px ) rotateY( ' + ( - worldYAngle ) + 'deg ) rotateX( ' + ( - worldXAngle ) + 'deg ) rotateZ( ' + layer.data.a + 'deg ) scale( ' + layer.data.s + ')';
     layer.style.webkitTransform = t;
     layer.style.MozTransform = t;
     layer.style.oTransform = t;

@@ -44,7 +44,6 @@ body {
   margin-top: -256px;
   height: 512px;
   width: 512px;
-  background-color: rgba( 255, 0, 0, .2 );
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
   -o-transform-style: preserve-3d;
@@ -57,7 +56,6 @@ body {
 }
 
 .cloudBase {
-  background-color: rgba( 255, 0, 255, .5 );
   position: absolute;
   left: 256px;
   top: 256px;
@@ -75,8 +73,6 @@ body {
   height: 256px;
   margin-left: -128px;
   margin-top: -128px;
-  background-image: url("../images/cloud.png");
-  background-color: rgba( 0, 255, 255, .1 );
   -webkit-transition: opacity .5s ease-out;
   -moz-transition: opacity .5s ease-out;
   -o-transition: opacity .5s ease-out;
