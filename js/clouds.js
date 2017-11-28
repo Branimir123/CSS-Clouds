@@ -57,7 +57,7 @@ function createCloud() {
     let cloud = document.createElement( 'img' );
     cloud.style.opacity = 0;
     let r = Math.random();
-    let src = '/images/cloud.png';
+    let src = '../images/cloud.png';
     ( function( img ) { img.addEventListener( 'load', function() {
       img.style.opacity = .7;
     } ) } )( cloud );
