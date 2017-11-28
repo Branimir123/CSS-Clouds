@@ -53,7 +53,7 @@ function createCloud() {
   div.style.oTransform = t;
   world.appendChild( div );
 
-  for( let j = 0; j < 5 + Math.round( Math.random() * 20 ); j++ ) {
+  for( let j = 0; j < 5 + Math.round( Math.random() * 15 ); j++ ) {
     let cloud = document.createElement( 'img' );
     cloud.style.opacity = 0;
     let r = Math.random();
@@ -71,12 +71,12 @@ function createCloud() {
     let s = .25 + Math.random();
     x *= .2; y *= .2;
     cloud.data = {
-      x: x,
-      y: y,
-      z: z,
-      a: a,
-      s: s,
-      speed: .1 * Math.random()
+      x,
+      y,
+      z,
+      a,
+      s,
+      speed: .05 * Math.random()
     };
     let t = 'translateX( ' + x + 'px ) translateY( ' + y + 'px ) translateZ( ' + z + 'px ) rotateZ( ' + a + 'deg ) scale( ' + s + ' )';
     cloud.style.webkitTransform = t;
