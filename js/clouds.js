@@ -22,6 +22,8 @@ updateView();
 
 } );
 
+generate();
+
 /*
 Changes the transform property of world to be
 translated in the Z axis by d pixels,
@@ -35,4 +37,72 @@ rotateX( ' + worldXAngle + 'deg) \
 rotateY( ' + worldYAngle + 'deg)';
 
 }
+/*
+  objects is an array of cloud bases
+  layers is an array of cloud layers
+*/
+var objects = [],
+layers = [];
 
+/*
+Clears the DOM of previous clouds bases
+and generates a new set of cloud bases
+*/
+function generate() {
+
+  objects = [];
+  layers = [];
+
+  if ( world.hasChildNodes() ) {
+    while ( world.childNodes.length >= 1 ) {
+      world.removeChild( world.firstChild );
+    }
+  }
+
+  for( var j = 0; j < 1; j++ ) {
+    objects.push( createCloud() );
+  }
+
+}
+
+/*
+Creates a single cloud base: a div in world
+that is translated randomly into world space.
+Each axis goes from -256 to 256 pixels.
+*/
+function createCloud() {
+
+  var div = document.createElement( 'div'  );
+  div.className = 'cloudBase';
+  var t = 'translateX( ' + Math.random() * 10 + 'px ) \
+    translateY( ' + Math.random() * 300 + 'px ) \
+    translateZ( ' + Math.random() * 300 + 'px )';
+  div.style.transform = t;
+  world.appendChild( div );
+
+  for( var j = 0; j < 5 + Math.round( Math.random() * 10 ); j++ ) {
+    var cloud = document.createElement( 'div' );
+    cloud.className = 'cloudLayer';
+
+    cloud.data = {
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      z: Math.random() * 100,
+      a: Math.random() * 100,
+      s: Math.random() * 1
+    };
+
+    var t = 'translateX( ' + cloud.data.x + 'px ) \
+      translateY( ' + cloud.data.y + 'px ) \
+      translateZ( ' + cloud.data.z  + 'px ) \
+      rotateZ( ' + cloud.data.a + 'deg ) \
+      scale( ' + cloud.data.s  + ' )';
+    cloud.style.transform = t;
+
+    div.appendChild( cloud );
+    layers.push( cloud );
+  }
+
+  return div;
+
+}
